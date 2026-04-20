@@ -14,7 +14,12 @@ namespace domain.commands.executables.motion.move
 
         protected virtual UniTask MoveTo(Vector3 position, float duration)
         {
-            return Context.GameObject.transform.DOMove(position, duration).SetEase(Ease.Linear).ToUniTask().AttachExternalCancellation(ExecutableContext.CancellationToken.Token);
+            return Context.GameObject.transform
+                .DOMove(position, duration)
+                .SetEase(Ease.Linear)
+                .AsyncWaitForCompletion()
+                .AsUniTask()
+                .AttachExternalCancellation(ExecutableContext.CancellationToken.Token);
         }
 
         protected virtual UniTask MoveBy(Vector3 value, float duration)

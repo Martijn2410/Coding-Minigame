@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -15,7 +14,12 @@ namespace domain.commands.executables.motion.rotate
 
         protected virtual UniTask RotateTo(Vector3 value, float duration)
         {
-            return Context.GameObject.transform.DORotate(value, duration).SetEase(Ease.Linear).ToUniTask().AttachExternalCancellation(ExecutableContext.CancellationToken.Token);
+            return Context.GameObject.transform
+                .DORotate(value, duration)
+                .SetEase(Ease.Linear)
+                .AsyncWaitForCompletion()
+                .AsUniTask()
+                .AttachExternalCancellation(ExecutableContext.CancellationToken.Token);
         }
         
         protected virtual UniTask RotateTo(int axisIndex, float value, float duration)
