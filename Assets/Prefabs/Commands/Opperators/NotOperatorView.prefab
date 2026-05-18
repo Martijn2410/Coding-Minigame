@@ -37,7 +37,6 @@ RectTransform:
   - {fileID: 3581609484983496655}
   - {fileID: 7534764435810054043}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -154,17 +153,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34dbc31713c249c9aca6e63f054cac0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsCreator: 0
   parameter: {fileID: 6772495644388287962}
 --- !u!1001 &2782402912606134294
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2782402912584382817}
     m_Modifications:
     - target: {fileID: 1237384310537917314, guid: 395c30353c80f4e2783e42f2160e78f6, type: 3}
       propertyPath: m_text
       value: not
+      objectReference: {fileID: 0}
+    - target: {fileID: 1237384310537917314, guid: 395c30353c80f4e2783e42f2160e78f6, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     - target: {fileID: 1668999744405032921, guid: 395c30353c80f4e2783e42f2160e78f6, type: 3}
       propertyPath: m_Pivot.x
@@ -255,6 +260,9 @@ PrefabInstance:
       value: PlainText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 395c30353c80f4e2783e42f2160e78f6, type: 3}
 --- !u!224 &3581609484983496655 stripped
 RectTransform:
@@ -266,6 +274,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2782402912584382817}
     m_Modifications:
     - target: {fileID: 2033184136478956227, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
@@ -318,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5624372375056954677, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5624372375056954677, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
       propertyPath: m_AnchorMin.x
@@ -326,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5624372375056954677, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5624372375056954677, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
       propertyPath: m_SizeDelta.x
@@ -370,7 +379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5624372375056954677, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: 5624372375056954677, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -389,6 +398,9 @@ PrefabInstance:
       value: parameter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15259019b083c4a9ba2bc52038c9c5c8, type: 3}
 --- !u!114 &6772495644388287962 stripped
 MonoBehaviour:
