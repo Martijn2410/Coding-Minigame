@@ -17,12 +17,40 @@ namespace domain.commands.executables.motion.grid
 
         public override async UniTask OnEnterAsync()
         {
-            var moveVector = Context.GameObject.transform.forward;
-            moveVector.y = 0f;
-            moveVector = moveVector.normalized * distance;
+            var rigidbody = Context.GameObject.GetComponent<Rigidbody>();
+            if (rigidbody == null)
+                throw new MissingComponentException($"MoveForwardCommand requires a Rigidbody on {Context.GameObject.name}.");
 
-            await MoveBy(moveVector, duration);
-            await ExecuteNextCommand().AttachExternalCancellation(ExecutableContext.CancellationToken.Token);
+            rigidbody.isKinematic = false;
+            rigidbody.useGravity = true;
+
+            var moveDirection = Context.GameObject.transform.forward;
+            moveDirection.y = 0f;
+            moveDirection = moveDirection.normalized;
+
+            const float fallMultiplier = 10f;
+            var totalDistance = distance;
+            var speed = totalDistance / duration;
+            var movedDistance = 0f;
+            var cancellationToken = ExecutableContext.CancellationToken.Token;
+
+            while (movedDistance < totalDistance)
+            {
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate, cancellationToken);
+
+                rigidbody.AddForce(Physics.gravity * (fallMultiplier - 1f), ForceMode.Acceleration);
+
+                var remainingDistance = totalDistance - movedDistance;
+                var stepDistance = Mathf.Min(speed * Time.fixedDeltaTime, remainingDistance);
+
+                if (stepDistance <= 0f)
+                    break;
+
+                rigidbody.MovePosition(rigidbody.position + moveDirection * stepDistance);
+                movedDistance += stepDistance;
+            }
+
+            await ExecuteNextCommand().AttachExternalCancellation(cancellationToken);
         }
 
         public override async UniTask OnExitAsync() { }
